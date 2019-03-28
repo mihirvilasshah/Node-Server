@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" class="gb" lang="en">
+<head>
+<title>Laboratory Simulation</title>
+
+<!-- META -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="user-scalable=yes,initial-scale=1.0" />
+
+<!-- CSS -->
+<link href="lab-styles.css" rel="stylesheet" type="text/css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js" type="text/javascript"></script>
+<!-- Bootstrap tooltip needs popper.js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js" crossorigin="anonymous"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+<script src="lab-scripts.js" type="text/javascript"></script>  
+
+</head>
+<body class="no-keyboard">
+        <div id="phase-holder">
+        
+        <!-- Begin phase-1 -->
+            <!-- Begin phase-1 -->
+        <div id="phase-1" class="sim-holder-resize inputs">
+         
+            <div id="question-holder" >
+          
+            </div>
+          </div>
+          <!--End phase-1 --> 
+            <div id="phase-2" class="sim-holder-resize" style="display:none;">
+                    
+                <img data-id="background" id="background-2" src="images/background.jpg" class="sim-background" draggable="false"  />
+                
+                <div id="phase-objects">
+                    <div id="no-zoom-2">
+                        <div aria-label="Left side of table" class="drop-target" data-id="table-left" id="table-left-2" role="button" style="top: 5%; left: 0; width: 38%; height: 95%;"></div>
+                        <img aria-label="Bottle of 10% corn syrup" class="sim-object svg" data-id="corn-syrup-ten" data-images="_10p-syrup-start-1,_10-syrup-cursor-2" id="corn-syrup-ten-2" role="button" src="images/10p-syrup.svg" style="top: 19.25%; left: -0.3%; width: 22.5%; height: 75.55%;" />
+                        <img aria-label="Bottle of 20% Corn Syrup" class="sim-object svg" data-id="corn-syrup-twenty" data-images="_20p-syrup-start-1,_20-syrup-cursor-2" id="corn-syrup-twenty-2" role="button" src="images/20p-syrup.svg" style="top: 11%; left: 14.1%; width: 16.8%; height: 70.9%;" />
+                   
+                        <div aria-label="Right side of table" class="drop-target" data-id="table-right" id="table-right-2" role="button" style="top: 5%; left: 62%; width: 38%; height: 95%;"></div>
+                        <img aria-label="Bottle of 30% corn syrup" class="sim-object svg" data-id="corn-syrup-thirty" data-images="_30p-syrup-start-1,_30-syrup-cursor-2" id="corn-syrup-thirty-2" role="button" src="images/30p-syrup.svg" style="top: 11.85%; left: 69.2%; width: 17.2%; height: 71%;" />
+                        <img aria-label="Bottle of distilled water" class="sim-object svg" data-id="water" data-images="d-water-start-1,d-water-cursor-2" id="water-2" role="button" src="images/d-water.svg" style="top: 20.25%; left: 82.25%; width: 18.55%; height: 75.55%;" />
+                        <img aria-label="Selectively permeable membrane" class="sim-object svg" data-id="membrane" data-images="membrane-start-1,membrane-cursor-2" id="membrane-2" role="button" src="images/membrane.svg" style="top: 85.05%; left: 76.75%; width: 7.35%; height: 6.5%;" />
+                        
+                        <div aria-label="Thistle tube" class="drop-target" data-id="thistle-tube" id="thistle-tube-2" role="button" style="top: 2.4%; left: 49.6%; width: 4%; height: 79%;"></div>
+                        <img aria-label="Beaker holding thistle tube" class="sim-object svg" data-id="beaker" id="beaker-2" role="button" src="images/mid-beaker.svg" style="top: 3.2%; left: 43.75%; width: 12.6%; height: 85.3%;" />
+                        
+                        <div id="zoom-in-2" style="top: 63%; left:55%; width:3%; height:3vw; display:none;"  data-id="zoom-in" class="sim-btn zoom-btn"  tabindex="0" aria-label="Zoom in on tube" role="button"  data-toggle="tooltip" data-placement="right" title="Zoom in"></div>
+                        
+                    </div>
+
+                   <div id="zoom-2" class='zoom'>
+                       <img id="background-zoom-2" src="images/background-zoom.jpg" class="sim-background" draggable="false" />
+                       <img aria-label="Thistle tube" class="sim-object svg" data-id="beaker-zoom" data-images="mid-beaker-syrup-water-15-zoom,mid-beaker-syrup-15-zoom,mid-beaker-syrup-water-zoom,mid-beaker-water-zoom,mid-beaker-syrup-zoom" id="beaker-zoom-2" role="img" src="images/mid-beaker-zoom.svg" style="top: 1.45%; left: 40.4%; width: 21.95%; height: 98.4%;" />
+                       <div id="zoom-out-2" style="top: 70%; left:65%; width:3%; height:3vw" data-id="zoom-out" class="sim-btn zoom-btn" tabindex="0" role="button"  tabindex="0" aria-label="Zoom out" data-toggle="tooltip" data-placement="right" title="Zoom out"></div>
+                       
+                   </div>
+                   
+                </div>
+                
+            </div>
+            <div id="phase-5" class="sim-holder-resize inputs">
+                <div id="question-holder" >
+                        <img src="images/final-image.jpg" style="width:50%; height: auto; margin-bottom: 20px; display:block;" role="presentation" />
+                        
+                </div>
+              </div>
+             <div id="phase-6" class="sim-holder-resize results-phase" style="display:none;" aria-label="This phase shows all relevent info for use with a lab report.  It can be printed or copied."></div>
+          
+
+             
+        
+            <div id="labels" class="sim-labels">
+                <label class="sim-label" data-left-offset="6.25" data-top-offset="6" for="corn-syrup-ten" style="top: 47.3%; left: 1.2%;">Bottle of 10% corn syrup</label>
+                <label class="sim-label" data-left-offset="-2.40" data-top-offset="5.50" for="membrane">Selectively permeable membrane</label>
+                <label class="sim-label" data-left-offset="5.40" data-top-offset="78.00" for="beaker">Beaker</label>
+                <label class="sim-label" data-left-offset="-5.40" data-top-offset="35.55" for="thistle-tube">Thistle tube</label>  
+                <label class="sim-label" for="corn-syrup-twenty" style="top: 31.25%; left: 28.15%;">Bottle of 20% corn syrup</label>
+                <label class="sim-label" for="corn-syrup-thirty" style="top: 29.15%; left: 67.95%;">Bottle of 30% corn syrup</label>
+                <label class="sim-label" for="water" style="top: 80.7%; left: 85.55%;">Bottle of distilled water</label>
+            </div>
+            <div class="steps-complete"><label></label><span>Phase completed - Progress Saved</span></div>
+            <!-- end steps-complete -->
+
+        </div>
+        
+        </body>
+        </html>

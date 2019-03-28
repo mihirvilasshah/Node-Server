@@ -1,0 +1,466 @@
+<!DOCTYPE html >
+
+<html class="gb" lang="en" style="overflow-x:hidden">
+<head>
+<title>Learn Smart Labs</title>
+
+<!-- META -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="user-scalable=yes,initial-scale=1.0,width=device-width,height=device-height" />
+<!--
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+-->
+<!-- CSS -->
+<link href="lab-styles.css" rel="stylesheet" type="text/css" />
+
+
+<!-- SCRIPTS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js" crossorigin="anonymous"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+<script src="main.js" type="text/javascript"></script>
+   <script>
+    function getState(){
+    //TODO: Need to implement by simulation for returning the state
+        return JSON.stringify(mainLab.userValues);
+    }
+    function setState(state){
+        if(state === undefined || state === null || state===''){
+            mainLab.userValues = {};
+        }else{
+            mainLab.userValues = JSON.parse(state);
+        }
+    }
+    // Below three functions are optional 
+    // If simulation supports score, completion
+    function getCompletion(){
+    //TODO: Need to implement by simulation If scoring is supported
+        return (mainLab.userValues.completed !== undefined);
+    }
+
+    function getScore(){
+    //TODO: Need to implement by simulation If completion is supported
+        return (mainLab.progress-1) / (mainLab.phases.length-2);
+
+    }
+</script> 
+</head>
+<body class="no-keyboard">
+<header id="sim-header" role="banner">                      
+  <div class="container">
+    <div id="back-btn" role="button" data-toggle="tooltip" data-placement="auto" title="Leave Laboratory Simulation" tabindex="0" aria-label="Leave laboratory simulation"></div>
+    <h1 id="sim-title" tabindex="-1">Learn Smart Labs</h1>
+    <div id="sim-header-nav">
+        <a id="sim-accessible-btn" aria-label="Accessibility Preferences and Help" href="" class="sim-accessibility-btn" role="button" data-toggle="modal" data-target="#sim-accessible-dialog"  data-container="body"  ></a>
+        <a id="sim-submit-btn" aria-label="Submit Lab Assignment" href="" class="sim-submit-btn" role="button" >SUBMIT</a>
+    </div>
+  </div>
+  <nav role="navigation">
+    <ul class="sim-navbar" role="tablist" aria-label="Lab Sections">
+      <li role="presentation"><a href="" id="menu-introduction" class="menu" role="tab" aria-selected="true" aria-expanded="true" aria-label="Introduction" aria-controls="introduction">Introduction</a></li>
+      <li role="presentation"><a href="" tabindex="-1" id="menu-lab" class="menu"  role="tab" aria-selected="false" aria-expanded="false" aria-label="Laboratory Simulation" aria-controls="lab">Laboratory Simulation</a></li>
+    </ul>
+   
+  </nav>
+</header>
+<!-- end header -->
+ <!-- start all modal dialogs -->
+
+ <!-- Modal Call Out -->
+ <div class="modal fade notabout" id="call-out" data-keyboard="false" data-backdrop="static"  role="dialog"  aria-modal="true"  aria-labelledby="title-callout-dialog" >
+        <div class="modal-dialog">
+  
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div role="button" class="close" data-dismiss="modal" tabindex="0" aria-label="close dialog">x</div>
+                    <h4 class="modal-title" id="title-callout-dialog"></h4>
+                </div>
+                <div class="modal-body" id="body-callout-dialog">
+                    <img class="image" /> <br />
+                    <span class="description"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Accessibility Help/Preferences -->
+  <div class="modal fade notabout" id="sim-accessible-dialog" role="dialog"  aria-modal="true"  aria-labelledby="title-accessible-dialog" aria-describedby="body-accessible-dialog">
+        <div class="modal-dialog">
+    
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <div role="button" class="close" data-dismiss="modal" tabindex="0" aria-label="close dialog">x</div>
+                    <h4 class="modal-title" id="title-accessible-dialog"><span></span>Accessibility Preferences and Help</h4>
+                </div>
+                <div class="modal-body" id="body-accessible-dialog">
+                    
+                    <div class="accessible-dialog">
+                      <div class="accessible-pref">
+                          <h5>Accessibility Preferences</h5>
+                      
+                              <div style="margin-top:20px;">
+                                  <input id="use-screen-reader" value="1" type="checkbox" aria-labelled-by="l-use-screen-reader" aria-describedby="screen-reader-extra">
+                                  <label id="l-use-screen-reader" for="use-screen-reader">Screen reader mode*</label><br/><br/>
+                                  <em style="font-size:12px;" id="screen-reader-extra">* Check this box if using a screen reader.  Recommended to use the latest version of Firefox with latest versions of NVDA or JAWS.  Do not check this box if you are not using a screen reader.</em>
+                              </div>
+                              
+                      </div>
+                        <div class="accessible-commands">
+                            <h5 aria-describedby="keboard-command-list">Shortcut Commands</h5>
+                            <ul style="list-style-type:none;" id="keyboard-command-list">
+                                    <li><span class="key-combo"></span> + s: Simulation Area</li>
+                                    <li><span class="key-combo"></span> + m: Methods</li>
+                                    <li><span class="key-combo"></span> + r: Reset</li>
+                                    <li><span class="key-combo"></span> + n: My Notes</li>
+                                    <li><span class="key-combo"></span> + l: Lab Data</li>
+                                    <li><span class="key-combo"></span> + h: Show/Hide labels</li>
+                                    <li><span class="key-combo"></span> + g: Go to next phase</li>
+                                    <li><span class="key-combo"></span> + p: Previous phase</li>
+                                    <li><span class="key-combo"></span> + z: Zoom in/Zoom out</li>
+                                    <li><span class="key-combo"></span> + s: Lab steps</li>
+                                    <li> Esc: Close dialog</li>
+        
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Modal Accessibility -->
+
+     <!-- Modal alert -->
+     <div class="modal fade notabout" id="sim-alert" role="dialog" data-backdrop="false" aria-modal="true"  aria-label="Alert" aria-labelledby="title-alert-dialog">
+            <div class="modal-dialog">
+      
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div role="button" class="close" data-dismiss="modal" tabindex="0" aria-label="close dialog">x</div>
+                        <h4 class="modal-title" id="title-alert-dialog" aria-hidden="true"><span></span>Alert</h4>
+                    </div>
+                    <div class="modal-body"> <span id="alert-text" class="description" ></span> </div>
+                </div>
+            </div>
+        </div>
+        <!-- end Modal alert -->
+
+
+  <!-- Aria alert-->
+  <div id="sim-aria-live" class="modal-content"  >
+        <div class="modal-header">
+            <!--<button type="button" class="close" data-dismiss="modal">x</button>
+            <h4 class="modal-title"><span></span>Alert</h4> -->
+        </div>
+            <div class="modal-body"  > <div id="aria-text" aria-live="polite"  class="description"></div> 
+            <div id="aria-alert-text" aria-live="assertive"  class="description"></div>
+        </div>
+    </div>
+  
+    <!-- Modal Popup Question -->
+    <div  class="modal fade notabout"  id="sim-question" role="dialog" aria-modal="true" data-backdrop="false" aria-labelledby="title-question-dialog" aria-describedby="question-text">
+        <div class="modal-dialog">
+           
+            <!-- Modal content-->
+            <div class="modal-content">
+                
+                    <div class="modal-header">
+                        <div role="button" class="close" data-dismiss="modal" tabindex="0" aria-label="close dialog">x</div>
+                        <h4 class="modal-title" id="title-question-dialog"><span></span>Question</h4>
+                    </div>
+                    <div id="scroll-div">
+                        <div id="question-text" class="modal-body"></div>
+                        <div class="modal-footer">
+                            <div class="feedback"  aria-live="assertive"><p></p></div>
+                            <button type="button" id="btn-submit" class="btn btn-default" tabindex="0">Submit</button>
+                            <button type="button" id="btn-continue" class="btn btn-default" tabindex="0">Continue</button>
+                            <button type="button" id="btn-tryagain" class="btn btn-default" tabindex="0">Try Again</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <!-- Modal Notes -->
+    <div class="modal fade notabout"  id="sim-notes"  data-backdrop="static" aria-modal="true"  data-keyboard="false" role="dialog" aria-labelledby="title-notes-dialog"  >
+        <div class="modal-dialog">
+  
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="close" role="button" data-dismiss="modal" tabindex="0" aria-label="close dialog">x</div>
+                    <h4 class="modal-title" id="title-notes-dialog" aria-hidden="true"><span></span>My Notes</h4>
+                </div>
+                <div class="modal-body" id="notes-content">
+                    <div contentEditable class="modal-text-input" data-placeholder="Record your notes here." aria-label="Notes Area"></div>
+                </div>
+               <!-- <div class="modal-footer">
+                    <button type="button" id="notes-save" class="btn btn-default" tabindex="0">Save</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- end Modal Notes -->
+    <!-- Modal Lab Data -->
+    <div class="modal fade notabout" id="sim-data" role="dialog"  data-backdrop="false"  aria-labelledby="title-lab-data-dialog">
+        <div class="modal-dialog">
+  
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <button class="close" data-dismiss="modal" tabindex="0" aria-label="close dialog">x</button>
+                    <h4 class="modal-title" id="title-lab-data-dialog" aria-hidden="true"><span></span>Lab Data</h4>
+                </div>
+                <div class="modal-body">
+                    <div contentEditable class="modal-text-input" data-placeholder="Record your lab data here."></div>
+                </div>
+                <div class="drag-indicator"></div>
+            </div>
+        </div>
+    </div>
+    <!-- end Lab Data -->
+    <!-- Modal Outline -->
+    <div class="modal fade notabout" id="sim-outline" role="dialog" data-backdrop="static" aria-modal="true"   data-keyboard="false" aria-labelledby="title-methods-dialog" >
+        <div class="modal-dialog">
+  
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div role="button" class="close" data-dismiss="modal" tabindex="0" aria-label="close dialog">x</div>
+                    <h4 class="modal-title" id="title-methods-dialog" aria-hidden="true"><span></span>Methods</h4>
+                </div>
+                <div class="modal-body">
+                    <ul id="outline-steps"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Modal Outline -->
+    <!-- Modal Reset -->
+    <div class="modal fade notabout" data-keyboard="false" data-backdrop="static" aria-modal="true"  id="sim-reset" role="dialog" aria-labelledby="reset-modal-text">
+        <div class="modal-dialog">
+  
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="title-reset-dialog" ><span></span>Reset</h4>
+                </div>
+                <div id="reset-modal-text" class="modal-body">
+                    <p id="question" class="reset-question"><strong>What would you like to reset?</strong></p>
+                    <p id="p1" class="reset-option">Selecting "<strong>Current Phase</strong>" will reset this phase. <!--and any of the following phases that have been completed--></p>
+                    <p id="p2" class="reset-option">Selecting "<strong>Entire Laboratory Simulation</strong>" will reset all progress and take you back to the beginning of the lab exercise.</p>
+                </div>
+                <div class="modal-footer">
+                    <div role="button" id="alert-yes-phase" class="btn btn-default" tabindex="0">Current Phase</div>
+                    <div role="button" id="alert-yes-start" class="btn btn-default" tabindex="0">Entire Laboratory Simulation</div>
+                    <div role="button" id="alert-cancel" class="btn btn-default" tabindex="0">Cancel</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Modal Outline -->
+    <!-- Modal Reset -->
+    <div class="modal fade notabout" data-keyboard="false" data-backdrop="false" id="sim-incorrect-phase" aria-modal="true"  role="dialog" aria-labelledby="title-incorrect-dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="title-incorrect-dialog" aria-hidden="true"><span></span>Phase Incorrect</h4>
+                </div>
+                <div id="scroll-div">
+                    <div id="incorrect-modal-text" class="modal-body"></div>
+                    <div id="incorrect-try-again">Select Reset Phase to try again.</div>
+                </div>
+                <div class="modal-footer">
+                    <div role="button" id="alert-yes-phase" class="btn btn-default" tabindex="0">Reset Phase</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Modal Outline -->
+   
+    <!-- end Modal Call Out -->
+   
+  
+    
+    
+  
+  <!--<div id="sim-incorrect-alert" aria-live="assertive" role="alert"><span></span><span></span></div>-->
+   <!-- Modal incorrect alert -->
+   <div class="modal fade notabout" data-keyboard="false" data-backdrop="false" id="sim-incorrect-alert-dialog" aria-modal="true"   role="dialog" aria-labelledby="title-incorrect-alert-dialog"  >
+      <div class="modal-dialog">
+  
+          <!-- Modal content-->
+          <div class="modal-content">
+              <div class="modal-header">
+                  <div role="button" class="close" tabindex="0" aria-label="close dialog">x</div>
+                  <h4 class="modal-title" id="title-incorrect-alert-dialog" aria-hidden="true"><span></span>Alert</h4>
+              </div>
+              <div class="modal-body"> <span id="incorrect-alert-text" class="description" ></span> </div>
+          </div>
+      </div>
+  </div>
+  <!-- end Modal incorrect alert -->
+
+<!-- Modal info alert -->
+   <div class="modal fade notabout" data-keyboard="false" data-backdrop="false" id="sim-info-alert-dialog"  aria-modal="true"  role="dialog" aria-labelledby="title-info-alert-dialog" >
+        <div class="modal-dialog">
+    
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div role="button" class="close" data-dismiss="modal" tabindex="0" aria-label="close dialog">x</div>
+                    <h4 class="modal-title" id="title-info-alert-dialog" aria-hidden="true"><span></span>Info</h4>
+                </div>
+                <div class="modal-body"> <span id="info-alert-text" class="description" ></span> </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Modal info alert -->
+    
+  
+  <!-- Modal confirm alert -->
+  <div class="modal fade notabout" data-keyboard="false" data-backdrop="false" id="sim-confirm-dialog"  aria-modal="true"  role="dialog" aria-labelledby="title-confirm-alert-dialog" aria-describedby="confirm-alert-text"  >
+        <div class="modal-dialog">
+    
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="title-confirm-alert-dialog" ><span></span>Confirm</h4>
+                </div>
+                <div class="modal-body"> <span id="confirm-alert-text" class="description" ></span> 
+                <div class="buttons">
+                    <button value="true" tabindex="0">Yes</button>
+                    <button value="false" tabindex="0">No</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Modal confirm alert -->
+  </div>
+  <!-- end lab --> 
+  </div>
+  <!-- end section-holder --> 
+  
+  
+  <!-- end all modal dialogs-->
+<div id="section-holder" >
+  <div id="introduction" class="section section-content" role="region" aria-label="Introduction" style="display:none;" role="tabpanel">
+    <div class="introduction-content row" >
+        <div></div>
+    </div>
+    <div class="introduction-continue row">
+        <div id="continue-btn-introduction" data="lab" class="continue-btn" tabindex="0" role="button"><a>Continue to: <strong>Laboratory Simulation</strong></a></div>
+    </div>
+  </div>
+  <div id="lab"  class="section section-content" aria-label="Laboratory Simulation" style="display:block;" role="tabpanel">
+    <div id="sim-loader-wait">
+        <div class="lds-spinner" aria-label="Lab Simulation Loading" role="img"></div>
+    </div>
+    <div class="sim-rht-col">
+        <div id="instructions-wrapper" role="region" aria-label="Instructions" tabindex="-1">
+            <div id="phase-header">
+                <h2>Phase <span id="phase-number"></span>: <strong><span id="phase-title"></span></strong></h2>
+                <h3 id="phase-description-header">Scene description</h3>
+                <p id="phase-description"></p>
+                <em>Complete the following steps:</em>
+            </div>
+            <div class="sim-steps" tabindex="-1"> </div>
+            <!-- end steps -->
+        </div>
+        
+    </div>
+    <!-- end sim-rht-col -->
+    <div class="sim-holder">
+      <iframe id="lab-phases" src="" class="sim-content" scrolling="no" style="display:block;" role="main" aria-label="Main lab region" ></iframe>
+
+      <ul role="region list" aria-label="Tools Menu" class="ctrl-btns clearfix">
+          <li role="listitem"><a href="" class="sim-outline-btn" role="button" data-toggle="modal" data-target="#sim-outline">Methods</a></li>
+          <li role="listitem"><a href="" class="sim-restart-btn" role="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#sim-reset">Reset</a></li>
+          <li role="listitem"><a href="" class="sim-notes-btn" role="button" data-toggle="modal" data-target="#sim-notes">My Notes</a></li>
+          <li role="listitem"><a href="" class="sim-data-btn" role="button" data-toggle="modal" data-target="#sim-data">Lab Data</a></li>
+          <li role="listitem" ><a href="" class="sim-help-btn" role="button">Show Labels</a></li>
+      </ul>
+    </div>
+    <!-- end sim-holder -->
+    <div class="sim-rht-col-ctrl" role="navigation">
+        <ul id="phase-1-next-phase-btn" class="phase-btn">
+            <li class="prev-phase-btn inactive" tabindex="0" aria-label="Previous Phase" role="button"><a></a></li>
+            <li class="next-phase-btn" tabindex="0" role="button"><a></a></li>
+        </ul>
+        <div class="sim-progress">
+            <label>Phases</label>
+            <div class="progress">
+                <div id="progress-current" aria-describedby="title-current-phase">1</div><span class="aria-only" id="title-current-phase" aria-label="current phase"></span>
+                <div id="progress-total" aria-describedby="title-total-phase">10</div><span class="aria-only" id="title-total-phase" aria-label="total phases"></span>
+                <div class="progress-bar-fill" style="width:100%;" role="presentation"></div>
+                <div class="progress-bar" role="presentation"></div>
+            </div>
+        </div>
+    </div>
+    <!-- end sim-rht-col-ctrl -->
+
+  <div style="display: none;">
+  <!--  Common placeholder phase htmls for reuse are below-->
+  <!--  Graphing Phase -->
+
+  <div id="graph-phase">
+      <div id="labels" class="sim-labels"></div>
+      <div id="graph-controls">
+          <div>
+              <h3 id="x-axis-label" role="presentation" aria-hidden="true">X axis</h3>
+              <select aria-labelledby="x-axis-label" id="x-axis" class="axis" tabindex="0">
+                  <option value="">Select X axis variable</option>
+              </select>
+          </div>
+          <div>
+              <h3 id="y-axis-label" role="presentation" aria-hidden="true">Y axis</h3>
+              <select aria-labelledby="y-axis-label" id="y-axis" class="axis" tabindex="0">
+                  <option value="">Select Y axis variable</option>
+              </select>
+          </div>
+          <div>
+              <h3 id="graph-type-label" role="presentation" aria-hidden="true">Graph type</h3>
+              <select id="graph-type" class="type" tabindex="0">
+                  <option value="">Select graph type</option>
+              </select>
+          </div>
+          <div>
+              <h3 role="presenation" aria-hidden="true">Graph</h3>
+              <button id="btn-create-graph" role="button" aria-label="Create Graph" tabindex="0">Create</button>
+              <button id="btn-save-graph" role="button" aria-label="Save Graph" disabled tabindex="0">Save</button>
+
+          </div>
+      </div>
+      <div id="graph-save-controls">
+
+          <ul id="saved-graphs" aria-label="Saved Graphs" role="list">
+              <li role="presentation">Saved:</li>
+          </ul>
+      </div>
+      <div id="graph"></div>
+
+  </div>
+
+  <!-- Results Phase-->
+    <div id="results-phase">
+        <button id="results-print" tabindex="0" onclick="window.print();">Print</button>
+        <!--<h2 class="results-questions">Questions</h2>-->
+        <div id="results-questions" ></div>
+        <h2 id="results-collected-lab-data" class="results-lab-data">Collected Lab Data</h2>
+        <div id="results-lab-data" class="results-lab-data"></div>
+        <h2 class="results-saved-graphs">Saved Graphs</h2>
+        <div id="results-saved-graphs" class="results-saved-graphs"></div>
+        <h2 class="results-my-notes">My Notes</h2>
+        <div id="results-my-notes"></div>
+    </div>
+  </div>
+
+</body>
+</html>

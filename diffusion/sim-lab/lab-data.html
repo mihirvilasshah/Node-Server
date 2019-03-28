@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lab Data</title>
+<meta charset="utf-8" />
+</head>
+<body>
+  <div id="lab-data-page">
+    <div id="warning">
+      <div role="alert" aria-live="assertive" class="warning liquid-volume">The liquid volume entered is out of the expected range</div>
+    </div>
+<form>
+  <table class="data-entry">
+    <thead>
+      <tr>
+        <th> Corn Syrup Concentration </th>
+        <th> Liquid Volume (mL) </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">10% Corn Syrup</th>
+        <td><input data-type="number" data-min="2" data-max="4" name="liquid-volume-1" type="text" class="liquid-volume" data-phase="2" /></td>
+      </tr>
+      <tr>
+        <th scope="row">20% Corn Syrup</th>
+        <td><input data-type="number" data-min="6" data-max="8" name="liquid-volume-2" type="text" class="liquid-volume" data-phase="3" /></td>
+      </tr>
+      <tr>
+        <th scope="row">30% Corn Syrup</th>
+        <td><input data-type="number" data-min="11" data-max="13" name="liquid-volume-3" type="text" class="liquid-volume"  data-phase="4" /></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+</div>
+<div id="introduction-page">
+<div class="intro-objectives">
+  <h2>Key Concepts</h2>
+  <ul class="intro-list">
+      <li>A selectively permeable (semipermeable) membrane only allows certain molecules through and blocks others.</li>
+      <li>Osmotic pressure is influenced by changes in nonpermeable solute concentration.</li>
+      <li>Higher nonpermeable solute concentration increases the amount of water that will cross the membrane. </li>
+  </ul>
+</div>
+<div class="overview">
+  <h2>Overview</h2>
+  <ul class="intro-list">
+    <li>In this simulation, you will examine osmosis using thistle tubes that are fitted with membranes over their large, open ends.</li> 
+    <li>
+    You will place different solutions in thistle tubes and beakers, and then record changes in the volume of water moved by osmosis.
+    </li>
+  </ul>
+
+</div>
+<div class="before-begin">
+  <h2>Before you begin</h2>
+  <p>Make sure you are familiar with the following terms</p>
+  <ul class="intro-list accordian">
+      <li>
+        Osmosis
+        <div>Osmosis is the movement of water across a selectively permeable membrane from a hypotonic solution into a hypertonic solution.</div>
+      </li>
+      <li>
+        Osmotic Pressure
+        <div>The pressure that results from the movement of water by osmosis.</div>
+      </li>
+      <li>
+        Thistle tube 
+        <div>A thistle tube is a long tube of glassware with an open round reservoir at one end.</div>
+      </li>
+      
+  </ul>
+  <strong style="text-align:center">Thistle tube in a beaker</strong>
+  <br/>
+  <img src="assets/thistle-tube.png" alt="Thistle tube in a beaker" style="width:auto; max-height: 50%; margin-left:0;margin-top:10px;"/>
+
+</div>
+</div>
+<div style="display: none;" id="steps-xml">
+    <xml>
+  <lab title="Osmosis : Movement of water across a selectively permeable membrane" />
+  <phases>
+  <phase id="1" title="Hypothesis &amp; Strategy">
+    <description></description>
+      <step type="question">
+        <text>Select your hypothesis</text>
+        <reaction>My Hypothesis:</reaction>
+      </step>
+      <step type="question">
+        <text>Select your strategy</text>
+        <reaction>My Strategy:</reaction>
+      </step>
+      <questions>
+        <question id="1" correct="" q="What is your hypothesis for this experiment?">
+          <choices>
+            <choice id="1">
+              <text>As the concentration of solutes (corn syrup) increases, osmosis will decrease.</text>
+            </choice>
+            <choice id="2">
+              <text>The concentration of solutes (corn syrup) will not have an effect on osmosis.</text>
+            </choice>
+            <choice id="3">
+              <text>As the concentration of solutes (corn syrup) increases, osmosis will increase.</text>
+            </choice>
+          </choices>
+        </question>
+        <question id="2" correct="1" q="What is your strategy?">
+          <choices>
+            <choice id="1">
+              <text>I will place different concentrations of corn syrup into thistle tubes with a selectively permeable membrane. The thistle tubes with the corn syrup will be placed into a beaker of water, and I will measure the volume change as a result of osmosis in the tube.</text>
+            </choice>
+            <choice id="2">
+              <text>I will place different concentrations of corn syrup into a beaker. I will place a thistle tube with a selectively permeable membrane filled with water into the beaker and measure how much water enters the beaker.</text>
+              <feedback>It would not be practical to measure a small change in volume in a large beaker.</feedback>
+            </choice>
+          </choices>
+        </question>
+      </questions>
+    </phase>
+    <phase id="2"  title="10% Corn syrup">
+      <description>You are at a lab table.  Present are 3 bottles of corn syrup at concentrations of 10%, 20% and 30%. Also, a bottle of distilled water, a empty beaker with a thistle tube inside, and a selectively permeable membrane with a rubber band (one object) </description>
+      <step>
+        <text>Attach selectively permeable membrane to bottom of thistle tube</text>
+        <reaction>Membrane was attached to the bottom of the tube with a rubber band</reaction>
+      </step>
+      <step>
+        <text>Add 10% corn syrup to thistle tube</text>
+        <reaction>10% Corn syrup added to tube. 10% Corn syrup is still selected. Return it to the table.</reaction>
+      </step>
+      <step>
+        <text>Add distilled water to beaker</text>
+        <reaction>Water added to beaker. Water is still selected. Return it to the table.</reaction>
+      </step>
+      <step>
+        <text>Wait 10 minutes to measure volume of liquid inside tube.  Record in Lab Data</text>
+        <reaction></reaction>
+      </step>
+    </phase>
+    <phase id="3"  title="20% Corn syrup">
+      <description>You are at a lab table.  Present are 3 bottles of corn syrup at concentrations of 10%, 20% and 30%. Also, a bottle of distilled water, a empty beaker with a thistle tube inside, and a selectively permeable membrane with a rubber band (one object) </description>
+      <step>
+        <text>Attach selectively permeable membrane to bottom of thistle tube</text>
+        <reaction>Membrane was attached to the bottom of the tube with a rubber band</reaction>
+      </step>
+      <step>
+        <text>Add 20% corn syrup to thistle tube</text>
+        <reaction>20% Corn syrup added to tube. 20% Corn syrup is still selected. Return it to the table.</reaction>
+      </step>
+      <step>
+        <text>Add distilled water to beaker</text>
+        <reaction>Water added to beaker. Water is still selected. Return it to the table.</reaction>
+      </step>
+      <step>
+        <text>Wait 10 minutes to measure volume of liquid inside tube.  Record in Lab Data</text>
+        <reaction></reaction>
+      </step>
+    </phase>
+    <phase id="4"  title="30% Corn syrup">
+      <description>You are at a lab table.  Present are 3 bottles of corn syrup at concentrations of 10%, 20% and 30%. Also, a bottle of distilled water, a empty beaker with a thistle tube inside, and a selectively permeable membrane with a rubber band (one object) </description>
+      <step>
+        <text>Attach selectively permeable membrane to bottom of thistle tube</text>
+        <reaction>Membrane was attached to the bottom of the tube with a rubber band</reaction>
+      </step>
+      <step>
+        <text>Add 30% corn syrup to thistle tube</text>
+        <reaction>30% Corn syrup added to tube. 30% Corn syrup is still selected. Return it to the table.</reaction>
+      </step>
+      <step>
+        <text>Add distilled water to beaker</text>
+        <reaction>Water added to beaker. Water is still selected. Return it to the table.</reaction>
+      </step>
+      <step>
+        <text>Wait 10 minutes to measure volume of liquid inside tube.  Record in Lab Data</text>
+        <reaction></reaction>
+      </step>
+    </phase>
+    <phase id="5" title="Conclusion">
+    <description></description>
+      <step type="question">
+        <text>Compare your hypothesis to the data you collected. Answer the question</text>
+        <reaction>My Conclusion:</reaction>
+      </step>
+      <questions>
+        <question id="1" correct="1" q="What effect does corn syrup concentration have on the movement of water in this simulation?">
+          <choices>
+            <choice id="1">
+              <text>More water is drawn up into the thistle tube with higher concentrations of corn syrup.</text>
+              <feedback></feedback>
+            </choice>
+            <choice id="2">
+              <text>Less water is drawn up into the thistle tube with higher concentrations of corn syrup.</text> 
+              <feedback>A lower corn syrup concentration has less osmotic pull on water up into the tube.</feedback>
+            </choice>
+            <choice id="3">
+              <text>The concentration of corn syrup has no effect on how much water is drawn up into the thistle tube.</text>
+              <feedback>Corn syrup concentrations will definitely have an osmotic effect on the amount of water drawn up into the tube.</feedback>
+            </choice>
+            <choice id="4">
+              <text>More water is drawn up into the thistle tube with lower concentrations of corn syrup.</text>
+              <feedback>This would actually have the opposite effect on the direction the water moves.</feedback>
+            </choice>
+          </choices>
+        </question>
+      </questions>
+    </phase>
+    <phase id="6"  title="Save Lab Data">
+      <description></description>
+      <step>
+        <text>Relevant Lab Data is available to be saved for personal reference.  This data will be available if you return to this laboratory simulation</text>
+        <reaction></reaction>
+      </step>
+    </phase>
+  </phases>
+  <popup-questions>
+    <question id="1" correct="1" q="Why is this called a selectively permeable membrane?">
+      <choice id="1">
+        <text>Because it allows small molecules, like water, to pass through but not larger molecules, like those in corn syrup.</text>
+        <feedback>Correct. The membrane has holes only large enough to allow water to freely pass back and forth</feedback>
+      </choice>
+      <choice id="2">
+        <text>Because it allows any molecule to selectively choose what side of the membrane to move towards.</text>
+        <feedback>Incorrect. Only water can move from one side to the other; larger molecules cannot.</feedback>
+      </choice>
+    </question>
+  </popup-questions>
+</xml>
+</div>
+</body>
+</html>
